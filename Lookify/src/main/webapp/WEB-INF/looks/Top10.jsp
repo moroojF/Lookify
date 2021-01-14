@@ -6,42 +6,33 @@
 <head>
 <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
 <meta charset="ISO-8859-1">
-<title>Lookify</title>
+<title>Search</title>
 </head>
 <body>
 <div class="container">
 <div class="row">
-<a href="songs/new" class="mr-4">Add New</a>
-<a href="search/topTen">Top Songs</a>
-<form action="/search/${q}" class="my-3">
-  		<input type="text" name="q" />
-  		<input type="submit" value="Search" />
-</form>
-</div>
+<h4>Top Ten Songs:</h4>
+
+<a href="/dashboard">Dashboard</a>
+
 <div class="row">
 <table class="table table-bordered mt-5">
     <thead>
         <tr>
             <th>Title</th>
-            <th>Rating</th>
-            <th>Actions</th>
+            <th>Artist</th>
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${songs}" var="song">
+        <c:forEach items="${top10songs}" var="song">
         <tr>
             <td><a href="/songs/show/${song.id}"><c:out value="${song.title}"/></a></td>
-            <td><c:out value="${song.rating}"/></td>
-            <td><form action="/songs/${song.id}" method="post">
-					<div class="form-group mt-4">
-    				<input type="hidden" name="_method" value="delete">
-    				<input type="submit" value="Delete">
-    				</div>
-				</form></td>
+            <td><c:out value="${song.artist}"/></td>
         </tr>
         </c:forEach>
     </tbody>
 </table>
+</div>
 </div>
 </div>
 </body>

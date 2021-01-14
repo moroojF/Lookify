@@ -7,10 +7,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.Song;
 import com.example.demo.services.SongService;
@@ -62,5 +59,17 @@ public class SongsController {
     public String destroy(@PathVariable("id") Long id) {
     	songService.deleteSong(id);
         return "redirect:/dashboard";
+    }
+    
+    @RequestMapping("/search/topTen")
+    public String top10(Model model) {
+    	model.addAttribute("top10songs", songService.top10Rating());
+    	return "/looks/Top10.jsp";
+    }
+
+    @RequestMapping("/search")
+    public String searchResults(@RequestParam("q") String q, Model model) {
+    	model.addAttribute("searchR", songService.search4Song(q));
+    	return "/looks/search.jsp";
     }
 }

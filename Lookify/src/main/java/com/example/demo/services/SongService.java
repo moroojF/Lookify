@@ -39,7 +39,11 @@ private final SongRepository songRepository;
         }
 	}
 	
-	public List<Song> Search4Song(String artist) {
-        return songRepository.findByArtistContaining(artist);	
+	public List<Song> search4Song(String q) {
+        return songRepository.findByArtistContaining(q);	
+	}
+	
+	public List<Song> top10Rating() {
+        return songRepository.top10();	
 	}
 }

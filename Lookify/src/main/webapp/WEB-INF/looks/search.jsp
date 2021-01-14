@@ -6,18 +6,18 @@
 <head>
 <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
 <meta charset="ISO-8859-1">
-<title>Lookify</title>
+<title>Search</title>
 </head>
 <body>
 <div class="container">
 <div class="row">
-<a href="songs/new" class="mr-4">Add New</a>
-<a href="search/topTen">Top Songs</a>
+<h4>Songs by artist:</h4>
 <form action="/search/${q}" class="my-3">
   		<input type="text" name="q" />
   		<input type="submit" value="Search" />
 </form>
-</div>
+<a href="/dashboard">Dashboard</a>
+
 <div class="row">
 <table class="table table-bordered mt-5">
     <thead>
@@ -28,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${songs}" var="song">
+        <c:forEach items="${searchR}" var="song">
         <tr>
             <td><a href="/songs/show/${song.id}"><c:out value="${song.title}"/></a></td>
             <td><c:out value="${song.rating}"/></td>
@@ -42,6 +42,7 @@
         </c:forEach>
     </tbody>
 </table>
+</div>
 </div>
 </div>
 </body>
